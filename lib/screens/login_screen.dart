@@ -3,6 +3,7 @@ import 'package:ivc/components/background.dart';
 import 'package:ivc/constants.dart';
 import 'package:ivc/models/api_response.dart';
 import 'package:ivc/screens/home_screen.dart';
+import 'package:ivc/screens/register_screen.dart';
 import 'package:ivc/services/users_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -52,7 +53,8 @@ void _login(String email, String passord)async{
 }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Background(content: Center(
+    return Scaffold(
+      body: Background(content: Center(
       child: SingleChildScrollView(
         child: Form(
           key: key,
@@ -119,6 +121,20 @@ void _login(String email, String passord)async{
                     ),
                   ),
                 ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Vous n'avez pas de compte? "),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context)=> RegisterScreen()),
+                      (route) => false
+                    ),
+                    child: Text("Créez un compte", style: TextStyle(fontWeight: FontWeight.bold),)
+                  ),
+                ],
               ),
           ],),
         ),
