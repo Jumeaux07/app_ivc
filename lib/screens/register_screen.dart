@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ivc/components/background.dart';
 import 'package:ivc/constants.dart';
+import 'package:ivc/models/api_response.dart';
+import 'package:ivc/screens/home_screen.dart';
 import 'package:ivc/screens/login_screen.dart';
+import 'package:ivc/services/users_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({ Key? key }) : super(key: key);
@@ -10,12 +14,48 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 bool _loading = false;
-TextEditingController emailText = TextEditingController();
+TextEditingController usernameText = TextEditingController();
 TextEditingController passwordText = TextEditingController();
 TextEditingController confirmationText = TextEditingController();
 GlobalKey<FormState> key = GlobalKey<FormState>();
+bool _value = false;
 class _RegisterScreenState extends State<RegisterScreen> {
+  
+  void _register(String username, String password, String passwordConfirmation)async{
+    ApiResponse apiResponse = await registerUser(username, password, passwordConfirmation);
+    if(apiResponse.token != null){
+      setState((){
+        _loading = false;
+      });
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context)=> HomeScreen()), (route) => false
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('${apiResponse.message}'), backgroundColor: vert)
+      );
+    }else{
+      setState(() {
+        _loading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('${apiResponse.erreur}'), backgroundColor:Colors.red)
+      );
+    }
+  }
 
+  void isInternet()async{
+    var result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.none){
+      setState(() {
+        _loading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(noInternet),
+          backgroundColor: Colors.red,
+        )
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +75,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        controller: emailText,
+                        controller: usernameText,
                         validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email_outlined),
-                          labelText: "Email",
+                          prefixIcon: Icon(Icons.person_outline),
+                          labelText: "Identifiant",
                           labelStyle: TextStyle(fontSize: 25),
-                          hintText: "cedric@gmail.com",
+                          hintText: "cedric04",
                           hintStyle: TextStyle(fontSize: 15),
                         ),
                       )
@@ -50,12 +90,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: !_value,
                         controller: passwordText,
                         validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock_open_outlined),
-                          labelText: "Password",
+                          labelText: "Mot de passe",
                           labelStyle: TextStyle(fontSize: 25),
                           hintText: "xxxxxxxxx",
                           hintStyle: TextStyle(fontSize: 15),
@@ -66,7 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: !_value,
                         controller: confirmationText,
                         validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                         decoration: InputDecoration(
@@ -78,7 +118,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       )
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              value: _value,
+                                onChanged: (value){
+                                setState(() {
+                                  _value = value!;
+                                });
+                              },
+                              activeColor: vert,
+                              
+                            ),
+                            Text("Afficher le mot de passe")
+                          ],
+                        ),
+                    ),
                     // ---Bouton---
                     GestureDetector(
                       onTap: (){
@@ -94,8 +152,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             setState(() {
                               _loading = true;
                             });
+                            isInternet();
                             print("-------------Inscription en cours---------");
-                            // _register(emailText.text,passwordText.text);
+                            _register(usernameText.text, passwordText.text, confirmationText.text);
                           }
                         }
                       },

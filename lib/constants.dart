@@ -3,7 +3,7 @@
 // ---------------------END POINTS------------------
 const baseUrl = 'http://192.168.43.24:8000/api/';
 const loginUrl = baseUrl+'login_user';
-const registerUrl = baseUrl+'/store';
+const registerUrl = baseUrl+'users';
 
 // --------------------COLORS------------------
   const orange = Color(0xFFF37423);
@@ -20,3 +20,7 @@ const registerUrl = baseUrl+'/store';
   final btnCmd = "assets/images/btn_cmd.png";
   final btnList = "assets/images/btn_list.png";
   final logo = "assets/images/logo.png";
+
+  // ---------------------ERREUR---------------
+  const noInternet = "Verfiez votre connexion internet";
+  const badRequest = "Mauvaise requête";

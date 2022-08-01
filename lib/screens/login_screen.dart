@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:ivc/components/background.dart';
 import 'package:ivc/constants.dart';
@@ -15,9 +16,24 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 GlobalKey<FormState> key = GlobalKey<FormState>();
-TextEditingController emailText = TextEditingController();
+TextEditingController usernameText = TextEditingController();
 TextEditingController passwordText = TextEditingController();
   bool _loading = false;
+  bool _value = false;
+  //Verification internet
+  void _isInternet2()async {
+    var result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.none){
+      setState(() {
+        _loading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(noInternet),
+          backgroundColor: Colors.red,
+        )
+      );
+    }
+  }
 //Fonction connexion
 void _login(String email, String passord)async{
   setState(() {
@@ -68,13 +84,13 @@ void _login(String email, String passord)async{
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
                 child: TextFormField(
-                  controller: emailText,
+                  controller: usernameText,
                   validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email_outlined),
-                    labelText: "Email",
+                    prefixIcon: Icon(Icons.person_outline),
+                    labelText: "Identifiant",
                     labelStyle: TextStyle(fontSize: 25),
-                    hintText: "cedric@gmail.com",
+                    hintText: "Jumeaux07",
                     hintStyle: TextStyle(fontSize: 15),
                   ),
                 )
@@ -83,19 +99,33 @@ void _login(String email, String passord)async{
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
                 child: TextFormField(
-                  obscureText: true,
+                  obscureText: !_value,
                   controller: passwordText,
                   validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.lock_open_outlined),
-                    labelText: "Password",
+                    labelText: "Mot de passe",
                     labelStyle: TextStyle(fontSize: 25),
                     hintText: "xxxxxxxxx",
                     hintStyle: TextStyle(fontSize: 15),
                   ),
                 )
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  children: [
+                    Checkbox(value: _value, onChanged: (value){
+                      setState(() {
+                        _value = value!;
+                      });
+                    },
+                    activeColor: vert,),
+                    Text("Afficher le mot de passe")
+                  ],
+                ),
+              ),
               // ---Bouton---
               GestureDetector(
                 onTap: (){
@@ -103,8 +133,9 @@ void _login(String email, String passord)async{
                     setState(() {
                       _loading = true;
                     });
+                    _isInternet2();
                     print("-------------Connexion en cours---------");
-                    _login(emailText.text,passwordText.text);
+                    _login(usernameText.text,passwordText.text);
                   }
                 },
                 child: Padding(

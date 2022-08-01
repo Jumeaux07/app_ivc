@@ -6,13 +6,13 @@ import 'package:ivc/models/api_response.dart';
 import 'package:ivc/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<ApiResponse>loginUser(String email, String password)async{
+Future<ApiResponse>loginUser(String username, String password)async{
   ApiResponse apiResponse = ApiResponse();
   SharedPreferences pref = await SharedPreferences.getInstance();
   try {
     final response = await http.post(Uri.parse(loginUrl), 
       headers: {"accept":"application/json"},
-      body: {"email": email, "password": password}
+      body: {"username": username, "password": password}
       );
       if(response.statusCode == 200){
         final data = UserModel.fromJson(jsonDecode(response.body)['user']);
@@ -36,5 +36,42 @@ Future<ApiResponse>loginUser(String email, String password)async{
         print(apiResponse.erreur);
   }
 
+  return apiResponse;
+}
+
+Future<ApiResponse>registerUser(String username, String password, String passwordConfirmation)async{
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    final response = await http.post(Uri.parse(registerUrl),
+    headers: {"accept":"application/json"},
+    body: {"username":username, "password":password, "password_confirmation":passwordConfirmation}
+    );
+    if (response.statusCode == 201){
+      final data = UserModel.fromJson(jsonDecode(response.body)['user']);
+      final token = jsonDecode(response.body)['token'];
+      final message = jsonDecode(response.body)['message'];
+      apiResponse.message = message;
+      apiResponse.token = token;
+      apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['user']);
+
+      final user = jsonEncode(data.toMap());
+
+      await pref.setString("user", user);
+      await pref.setString("token", token);
+      print(message);
+      print(token);
+      print(user);
+    }else{
+      // final erreur = jsonDecode(response.body)['message'];
+      final exception = jsonDecode(response.body)['Exception'];
+      apiResponse.erreur = exception.toString();
+      print("invalide");
+      print(exception);
+    }
+  } catch (e) {
+    apiResponse.erreur = e.toString();
+    print(e);
+  }
   return apiResponse;
 }

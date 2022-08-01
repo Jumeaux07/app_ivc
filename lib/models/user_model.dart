@@ -3,10 +3,10 @@ class UserModel {
   String? nom;
   String? prenoms;
   String? phone;
-  String? email;
+  String? username;
   String? nomAtelier;
 
-  UserModel({this.id, this.nom, this.prenoms, this.phone, this.email, this.nomAtelier});
+  UserModel({this.id, this.nom, this.prenoms, this.phone, this.username, this.nomAtelier});
 
   factory UserModel.fromJson(Map<String, dynamic> j){
     return UserModel(
@@ -14,7 +14,7 @@ class UserModel {
       nom: j['nom'],
       prenoms: j['prenoms'],
       phone: j['phone'],
-      email: j['email'],
+      username: j['username'],
       nomAtelier: j['nomAtelier'],
     );
   }
@@ -24,7 +24,7 @@ class UserModel {
     'nom':nom,
     'prenoms':prenoms,
     'phone':phone,
-    'email':email,
+    'username':username,
     'nomAtelier':nomAtelier,
   };
 }
