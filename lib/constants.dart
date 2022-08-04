@@ -21,6 +21,17 @@ const registerUrl = baseUrl+'users';
   final btnList = "assets/images/btn_list.png";
   final logo = "assets/images/logo.png";
 
+//-----------------------ICONS------------------------
+  const home_icon =  "assets/icons/home.png";
+  const mannequin_icon =  "assets/icons/mannequin.png";
+  const orders_icon =  "assets/icons/my_orders.png";
+  const new_order_icon =  "assets/icons/new_order.png";
+  const task_icon =  "assets/icons/task.png";
+  const user_icon =  "assets/icons/user.png";
+  const clothes_shop_icon =  "assets/icons/clothes-shop.png";
+  const fashion_design =  "assets/icons/fashion-design.png";
+  const fashion_designer =  "assets/icons/fashion-designer.png";
+
   // ---------------------ERREUR---------------
   const noInternet = "Verfiez votre connexion internet";
   const badRequest = "Mauvaise requête";

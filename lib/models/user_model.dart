@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 class UserModel {
   int? id;
   String? nom;
@@ -5,6 +9,8 @@ class UserModel {
   String? phone;
   String? username;
   String? nomAtelier;
+
+  static UserModel? sessionUser;
 
   UserModel({this.id, this.nom, this.prenoms, this.phone, this.username, this.nomAtelier});
 
@@ -27,4 +33,24 @@ class UserModel {
     'username':username,
     'nomAtelier':nomAtelier,
   };
+
+  //Get User data 
+  static getUser()async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var data = pref.getString("user");
+    if(data != ""){
+      var decod = jsonDecode(data!);
+      var user = UserModel.fromJson(decod);
+      sessionUser = user;
+    }
+    if(data == ""){
+      sessionUser = null;
+    }
+  }
+
+// logout User
+  static void logout()async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.remove("token");
+  }
 }

@@ -6,6 +6,7 @@ import 'package:ivc/models/api_response.dart';
 import 'package:ivc/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Login Function
 Future<ApiResponse>loginUser(String username, String password)async{
   ApiResponse apiResponse = ApiResponse();
   SharedPreferences pref = await SharedPreferences.getInstance();
@@ -39,6 +40,7 @@ Future<ApiResponse>loginUser(String username, String password)async{
   return apiResponse;
 }
 
+//Register Function
 Future<ApiResponse>registerUser(String username, String password, String passwordConfirmation)async{
   SharedPreferences pref = await SharedPreferences.getInstance();
   ApiResponse apiResponse = ApiResponse();
@@ -75,3 +77,5 @@ Future<ApiResponse>registerUser(String username, String password, String passwor
   }
   return apiResponse;
 }
+
+// Get User Info Function

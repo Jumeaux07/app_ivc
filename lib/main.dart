@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ivc/screens/login_screen.dart';
 import 'package:ivc/screens/splash_screen.dart';
 
 void main() {
@@ -11,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'IvoireCouture',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Raleway',
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.deepOrange,
       ),
       home: SplashScreen()
     );

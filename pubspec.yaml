@@ -55,6 +55,15 @@ flutter:
     - assets/images/btn_cmd.png
     - assets/images/btn_list.png
     - assets/images/logo.png
+    - assets/icons/home.png
+    - assets/icons/mannequin.png
+    - assets/icons/my_orders.png
+    - assets/icons/new_order.png
+    - assets/icons/task.png
+    - assets/icons/user.png
+    - assets/icons/fashion-design.png
+    - assets/icons/fashion-designer.png
+    - assets/icons/clothes-shop.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
