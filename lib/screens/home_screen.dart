@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ivc/constants.dart';
 import 'package:ivc/models/user_model.dart';
 import 'package:ivc/screens/dashboard_screen.dart';
-import 'package:ivc/screens/login_screen.dart';
+import 'package:ivc/screens/help_screen.dart';
+import 'package:ivc/screens/subscription_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -38,7 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       floatingActionButton: FloatingActionButton(onPressed: () {
-
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context)=>SubscriptionScreen())
+          );
         },
         child: Icon(Icons.monetization_on),
       ),
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label:"Home" ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label:"Profil")
+          BottomNavigationBarItem(icon: Icon(Icons.help), label:"Aide")
         ],
         onTap: _onTape,
         currentIndex: _curentIndex,
@@ -56,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: _pageController,
           children: [
             DashboardScreen(),
-            LoginScreen()
+            HelpScreen()
           ],
           onPageChanged: (page){
             setState(() {

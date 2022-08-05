@@ -31,6 +31,8 @@ dependencies:
   http: ^0.13.3
   shared_preferences: ^2.0.7
   connectivity_plus: ^2.1.0
+  page_transition: ^1.1.6
+  image_picker: ^0.8.4+1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,18 @@ flutter:
     - assets/icons/fashion-design.png
     - assets/icons/fashion-designer.png
     - assets/icons/clothes-shop.png
+    - assets/icons/user_1.png
+    - assets/icons/notify.png
+    - assets/icons/logout.png
+    - assets/icons/password.png
+    - assets/icons/security.png
+    - assets/icons/termes.png
+    - assets/icons/phone.png
+    - assets/icons/help.png
+    - assets/icons/add-user.png
+    - assets/icons/camera.png
+    - assets/icons/camera-1.png
+    - assets/icons/user-profile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

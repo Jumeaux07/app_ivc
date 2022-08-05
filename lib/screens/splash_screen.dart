@@ -20,13 +20,20 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void>isToken()async{
     SharedPreferences pref = await SharedPreferences.getInstance();
     final token =  pref.get("token");
-    print(token);
-    setState(() {
-      islogged = true;
-    });
+    if(token != null){
+      print(token);
+      setState(() {
+        islogged = true;
+      });
+    }else{
+      print(token);
+      setState(() {
+        islogged = false;
+      });
+    }
   }
   Future<Timer> loadData()async{
-    return new Timer(Duration(seconds: 6), nextPage);
+    return new Timer(Duration(seconds: 4), nextPage);
   }
   nextPage(){
     Navigator.of(context).pushReplacement(
@@ -48,11 +55,10 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           AnimatedCrossFade(
             firstChild: Image.asset(logo), 
-            secondChild: Image.asset(logo), 
+            secondChild: Image.asset(btnCmd), 
             crossFadeState: isFirst?CrossFadeState.showFirst:CrossFadeState.showSecond, 
-            duration: Duration(milliseconds: 1000)
+            duration: Duration(milliseconds: 3500)
           ),
-          CircularProgressIndicator(color: vert,),
         ],
       )),
     );

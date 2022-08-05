@@ -4,6 +4,7 @@
 const baseUrl = 'http://192.168.43.24:8000/api/';
 const loginUrl = baseUrl+'login_user';
 const registerUrl = baseUrl+'users';
+const orderUrl = baseUrl+'commandes';
 
 // --------------------COLORS------------------
   const orange = Color(0xFFF37423);
@@ -31,6 +32,19 @@ const registerUrl = baseUrl+'users';
   const clothes_shop_icon =  "assets/icons/clothes-shop.png";
   const fashion_design =  "assets/icons/fashion-design.png";
   const fashion_designer =  "assets/icons/fashion-designer.png";
+  const user_1_icon =  "assets/icons/user_1.png";
+  const notify_icon =  "assets/icons/notify.png";
+  const logout_icon =  "assets/icons/logout.png";
+  const password_icon =  "assets/icons/password.png";
+  const security_icon =  "assets/icons/security.png";
+  const termes_icon =  "assets/icons/termes.png";
+  const phone_icon =  "assets/icons/phone.png";
+  const help_icon =  "assets/icons/help.png";
+  const add_user_icon =  "assets/icons/add-user.png";
+  const camera_icon =  "assets/icons/camera.png";
+  const camera_1_icon =  "assets/icons/camera-1.png";
+  const user_profile_icon =  "assets/icons/user-profile.png";
+
 
   // ---------------------ERREUR---------------
   const noInternet = "Verfiez votre connexion internet";

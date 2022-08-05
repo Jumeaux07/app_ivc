@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ivc/constants.dart';
+import 'package:ivc/screens/list_order_screen.dart';
+import 'package:ivc/screens/new_order_screen.dart';
+import 'package:ivc/screens/settings_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({ Key? key }) : super(key: key);
@@ -29,15 +32,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     child: Image.asset(home_icon, color: noir,)
                   ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[300],
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context)=>SettingsScreen())
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                      ),
+                      child: Icon(Icons.settings, color:Colors.deepOrange)
                     ),
-                    child: Icon(Icons.settings, color:Colors.deepOrange)
                   ),
                 ],
               ),
@@ -74,32 +84,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        color:Colors.blueGrey[900],
+                  GestureDetector(
+                    onTap:(){
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context)=>NewOrderScreen())
+                      );
+                      print("Nouvelle commande");
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          color:Colors.blueGrey[900],
+                          ),
+                          width: 120,
+                          height: 120,
+                          child: Image.asset(new_order_icon, color:Colors.deepOrange)
                         ),
-                        width: 120,
-                        height: 120,
-                        child: Image.asset(new_order_icon, color:Colors.deepOrange)
-                      ),
-                      Text("Nouveaux")
-                    ],
+                        Text("Nouveaux")
+                      ],
+                    ),
                   ),
                   Column(
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(15),
-                        decoration:BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        color:Colors.blueGrey[900],
+                      GestureDetector(
+                        onTap:(){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context)=>ListOrderScreen())
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          decoration:BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          color:Colors.blueGrey[900],
+                          ),
+                          width: 120,
+                          height: 120,
+                          child: Image.asset(task_icon, color: Colors.deepOrange),
                         ),
-                        width: 120,
-                        height: 120,
-                        child: Image.asset(task_icon, color: Colors.deepOrange),
                       ),
                       Text("Commandes")
                     ],
