@@ -1,7 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:ivc/screens/splash_screen.dart';
 
-void main() {
+void main(){
+  // WidgetsFlutterBinding.ensureInitialized();
+
+  // ByteData data = await PlatformAssetBundle().load('assets/lets-encrypt-r3.pem');
+  // SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   runApp(MyApp());
 }
 

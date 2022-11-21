@@ -13,7 +13,7 @@ Future<ApiResponse>loginUser(String username, String password)async{
   try {
     final response = await http.post(Uri.parse(loginUrl), 
       headers: {"accept":"application/json"},
-      body: {"username": username, "password": password}
+      body: {"phone": username, "password": password}
       );
       if(response.statusCode == 200){
         final data = UserModel.fromJson(jsonDecode(response.body)['user']);
@@ -47,7 +47,7 @@ Future<ApiResponse>registerUser(String username, String password, String passwor
   try {
     final response = await http.post(Uri.parse(registerUrl),
     headers: {"accept":"application/json"},
-    body: {"username":username, "password":password, "password_confirmation":passwordConfirmation}
+    body: {"phone":username, "password":password, "password_confirmation":passwordConfirmation}
     );
     if (response.statusCode == 201){
       final data = UserModel.fromJson(jsonDecode(response.body)['user']);
@@ -58,12 +58,11 @@ Future<ApiResponse>registerUser(String username, String password, String passwor
       apiResponse.data = UserModel.fromJson(jsonDecode(response.body)['user']);
 
       final user = jsonEncode(data.toMap());
-
       await pref.setString("user", user);
       await pref.setString("token", token);
-      print(message);
-      print(token);
-      print(user);
+      print("message:"+message);
+      print("token:"+token);
+      print("utilisateur:"+user);
     }else{
       // final erreur = jsonDecode(response.body)['message'];
       final exception = jsonDecode(response.body)['Exception'];

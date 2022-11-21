@@ -1,7 +1,7 @@
   import 'package:flutter/cupertino.dart';
   import 'package:flutter/material.dart';
 // ---------------------END POINTS------------------
-const baseUrl = 'http://192.168.43.24:8000/api/';
+const baseUrl = 'https://a.immo-clik.com/api/';
 const loginUrl = baseUrl+'login_user';
 const registerUrl = baseUrl+'users';
 const orderUrl = baseUrl+'commandes';

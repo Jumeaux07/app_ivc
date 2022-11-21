@@ -51,6 +51,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/lets-encrypt-r3.pem
     - assets/images/font-img.png
     - assets/images/font-img-tissu.png
     - assets/images/font-img-trait.png

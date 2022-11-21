@@ -88,9 +88,9 @@ void _login(String email, String passord)async{
                   validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.person_outline),
-                    labelText: "Identifiant",
+                    labelText: "Téléphone",
                     labelStyle: TextStyle(fontSize: 25),
-                    hintText: "Jumeaux07",
+                    hintText: "0102030405",
                     hintStyle: TextStyle(fontSize: 15),
                   ),
                 )

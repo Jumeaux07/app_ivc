@@ -79,9 +79,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         validator: (value) => value!.isEmpty?"Champ obligatoire":null,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.person_outline),
-                          labelText: "Identifiant",
+                          labelText: "Téléphone",
                           labelStyle: TextStyle(fontSize: 25),
-                          hintText: "cedric04",
+                          hintText: "0102030405",
                           hintStyle: TextStyle(fontSize: 15),
                         ),
                       )
@@ -154,6 +154,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             });
                             isInternet();
                             print("-------------Inscription en cours---------");
+                            print("phone"+usernameText.text);
+                            print("pass"+passwordText.text);
+                            print("pass@"+confirmationText.text);
                             _register(usernameText.text, passwordText.text, confirmationText.text);
                           }
                         }
