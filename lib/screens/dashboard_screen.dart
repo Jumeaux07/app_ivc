@@ -16,7 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Column(
           children: [
-            SizedBox(height: 30,),
+            SizedBox(height: 5,),
             //App bar
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -24,13 +24,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
-                    width: 50,
-                    height: 50,
+                    width: 80,
+                    height: 80,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(image: AssetImage(logo))
                     ),
-                    child: Image.asset(home_icon, color: noir,)
                   ),
                   GestureDetector(
                     onTap: (){
@@ -59,7 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Home", style:TextStyle(
+                  Text("AKWABA", style:TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20
                     )
@@ -94,14 +93,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                           color:Colors.blueGrey[900],
                           ),
                           width: 120,
                           height: 120,
-                          child: Image.asset(new_order_icon, color:Colors.deepOrange)
+                          child: Image.asset(btnCmd),
                         ),
                         Text("Nouveaux")
                       ],
@@ -116,14 +115,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(5),
                           decoration:BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                           color:Colors.blueGrey[900],
                           ),
                           width: 120,
                           height: 120,
-                          child: Image.asset(task_icon, color: Colors.deepOrange),
+                          child: Image.asset(btnList),
                         ),
                       ),
                       Text("Commandes")

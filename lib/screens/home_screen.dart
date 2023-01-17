@@ -42,12 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
             MaterialPageRoute(builder: (context)=>SubscriptionScreen())
           );
         },
-        child: Icon(Icons.monetization_on),
+        child: Icon(Icons.person),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label:"Home" ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label:"Accueil" ),
           BottomNavigationBarItem(icon: Icon(Icons.help), label:"Aide")
         ],
         onTap: _onTape,
