@@ -6,25 +6,27 @@ import 'package:ivc/constants.dart';
 import 'package:ivc/screens/home_screen.dart';
 
 class NewOrderScreen extends StatefulWidget {
-  const NewOrderScreen({ Key? key }) : super(key: key);
-
+  const NewOrderScreen({ Key? key, required this.genre }) : super(key: key);
+  final String genre;
   @override
   State<NewOrderScreen> createState() => _NewOrderScreenState();
 }
 
-  XFile? _imageClient;
+  String?_imageClient;
 
   GlobalKey<FormState> key = GlobalKey<FormState>();
   TextEditingController nomClient = TextEditingController();
   TextEditingController phoneClient = TextEditingController();
   TextEditingController lieuClient = TextEditingController();
 
+
+
 class _NewOrderScreenState extends State<NewOrderScreen> {
   void _photoClient() async {
     final _imageFile = await ImagePicker().pickImage(source: ImageSource.camera);
     if(_imageFile != null){
       setState(() {
-        _imageClient = XFile(_imageFile.path);
+        _imageClient = _imageFile.path;
       });
     }
   }
@@ -34,11 +36,13 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           _photoClient();
-          print(_imageClient!.path);
+          // ignore: unnecessary_null_comparison
+          _imageClient == null? print('image') : print(_imageClient);
         },
         child: Image.asset(camera_1_icon, width: 40,),
       ),
       backgroundColor: Colors.grey[200],
+      appBar: AppBar(),
       body:SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,24 +54,9 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                   SizedBox(height:20),
                   // AppBar
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context)=>HomeScreen()), (route) => false
-                          );
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              Icon(Icons.arrow_back_ios),
-                              Text("Retour", style: TextStyle(fontWeight: FontWeight.bold),)
-                            ],
-                          ),
-                        ),
-                      ),
-                      Text("Nouvelle commande", style:TextStyle(
+                      Text("Information sur le client", style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold
                         ),
@@ -90,7 +79,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                         ),
                         child: _imageClient == null ? 
                           Image.asset(user_profile_icon, width: 150,):
-                          Image.file(File(_imageClient!.path),width: 150, height: 150,fit: BoxFit.cover, )
+                          Image.file(File(_imageClient!),width: 150, height: 150,fit: BoxFit.cover, )
                       ),
                     ]
                   ),

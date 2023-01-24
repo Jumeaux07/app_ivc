@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ivc/constants.dart';
 import 'package:ivc/screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -22,7 +23,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Raleway',
-        primarySwatch: Colors.deepOrange,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: orange,
+          secondary: vert
+        ),
       ),
       home: SplashScreen()
     );
