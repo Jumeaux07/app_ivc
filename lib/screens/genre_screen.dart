@@ -58,11 +58,10 @@ class _GenreScreenState extends State<GenreScreen> {
             }),
             child: Row(
               children: [
-                Expanded(child: Icon(Icons.man, size: 250,)),
+                Expanded(child: Image.asset(homme_genre_icon, height: 300,) ) 
               ],
             ),
           ),
-          Text('HOMME'),
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
@@ -71,11 +70,10 @@ class _GenreScreenState extends State<GenreScreen> {
             },
             child: Row(
               children: [
-                Expanded(child: Icon(Icons.woman, size: 250,)),
+                Expanded(child: Image.asset(femme_genre_icon, height: 300,) ) 
               ],
             ),
           ),
-          Text('FEMME')
             ],
           )
     );

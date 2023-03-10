@@ -44,6 +44,8 @@ const orderUrl = baseUrl+'commandes';
   const camera_icon =  "assets/icons/camera.png";
   const camera_1_icon =  "assets/icons/camera-1.png";
   const user_profile_icon =  "assets/icons/user-profile.png";
+  const homme_genre_icon =  "assets/icons/homme.png";
+  const femme_genre_icon =  "assets/icons/femme.png";
 
 
   // ---------------------ERREUR---------------

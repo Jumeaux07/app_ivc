@@ -33,6 +33,7 @@ dependencies:
   connectivity_plus: ^2.3.9
   page_transition: ^2.0.9
   image_picker: ^0.8.6+1
+  hive: ^2.2.3
   # http: 
   # shared_preferences: 
   # connectivity_plus: 
@@ -84,6 +85,8 @@ flutter:
     - assets/icons/camera.png
     - assets/icons/camera-1.png
     - assets/icons/user-profile.png
+    - assets/icons/femme.png
+    - assets/icons/homme.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

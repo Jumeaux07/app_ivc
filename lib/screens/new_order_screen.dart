@@ -56,8 +56,8 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Information sur le client", style:TextStyle(
-                            fontSize: 20,
+                      Text("INFO CLIENT", style:TextStyle(
+                            fontSize: 30,
                             fontWeight: FontWeight.bold
                         ),
                       )
@@ -68,18 +68,23 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(width: 1), 
-                            left: BorderSide(width: 1), 
-                            right: BorderSide(width: 1),
-                            bottom: BorderSide(width: 1)
+                      GestureDetector(
+                        onTap:(){
+                          _photoClient();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(width: 1), 
+                              left: BorderSide(width: 1), 
+                              right: BorderSide(width: 1),
+                              bottom: BorderSide(width: 1)
+                            ),
                           ),
+                          child: _imageClient == null ? 
+                            Image.asset(camera_icon, width: 150, color: orangeFonce,):
+                            Image.file(File(_imageClient!),width: 150, height: 150,fit: BoxFit.cover, )
                         ),
-                        child: _imageClient == null ? 
-                          Image.asset(user_profile_icon, width: 150,):
-                          Image.file(File(_imageClient!),width: 150, height: 150,fit: BoxFit.cover, )
                       ),
                     ]
                   ),
